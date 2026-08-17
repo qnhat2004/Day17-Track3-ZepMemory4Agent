@@ -3,24 +3,24 @@
 - Implementation: `student`
 - Kind: `practice`
 - Cases: **11**
-- Passed: **3/11**
-- Evidence hit rate: **27.3%**
-- Average retrieval latency: **792.8 ms**
-- Average token reduction vs full source context: **59.1%**
+- Passed: **11/11**
+- Evidence hit rate: **100.0%**
+- Average retrieval latency: **1154.3 ms**
+- Average token reduction vs full source context: **5.8%**
 
 | Case | Layer | Pass | Latency ms | Retrieved tokens | Token reduction | Missing / Error |
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | E01 | short_term | PASS | 0.0 | 133 | 0.0% |  |
-| E06 | semantic | PASS | 2383.7 | 148 | 67.8% |  |
-| E09 | long_term | FAIL | 1094.9 | 23 | 47.7% | missing=LOTUS-88, Java, Spring Boot |
+| E06 | semantic | PASS | 2295.9 | 370 | 19.4% |  |
+| E09 | long_term | PASS | 1250.5 | 732 | 0.0% |  |
 | E10 | short_term | PASS | 0.2 | 195 | 0.0% |  |
-| E02 | long_term | FAIL | 1059.4 | 116 | 47.5% | missing=Python |
-| E03 | long_term | FAIL | 1055.4 | 116 | 47.5% | missing=benchmark report, 16:00 |
-| E04 | episodic | FAIL | 347.4 | 22 | 90.0% | missing=ClientSession, concurrency=20, ASYNC-FIX-20 |
-| E05 | episodic | FAIL | 221.4 | 22 | 90.0% | missing=connection churn, timeout threshold |
-| E07 | mixed | FAIL | 1298.3 | 184 | 67.4% | missing=Python |
-| E11 | semantic | FAIL | 217.6 | 0 | 100.0% | missing=connection pooling, CONN-POOL-FIRST |
-| E08 | long_term | FAIL | 1042.7 | 24 | 91.7% | missing=BLUEBIRD-42, TypeScript, NestJS |
+| E02 | long_term | PASS | 1685.0 | 856 | 0.0% |  |
+| E03 | long_term | PASS | 1752.6 | 814 | 0.0% |  |
+| E04 | episodic | PASS | 812.9 | 251 | 0.0% |  |
+| E05 | episodic | PASS | 809.6 | 251 | 0.0% |  |
+| E07 | mixed | PASS | 1867.3 | 581 | 0.0% |  |
+| E11 | semantic | PASS | 419.6 | 314 | 44.4% |  |
+| E08 | long_term | PASS | 1803.9 | 804 | 0.0% |  |
 
 ## Evidence excerpts
 
@@ -30,11 +30,11 @@
 
 ### E06 - semantic
 
-`EPISODE: For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3. metadata= EPISODE: {"id":"kb-payment-retry","entity":"Payment API Retry Policy","summary":"For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3.","source":"internal-api-guideline-v3","updated_at":"2026-08-10T00:00:00Z"} metadata=`
+`EPISODE: For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3. metadata= EPISODE: {"id":"kb-payment-retry","entity":"Payment API Retry Policy","summary":"For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3.","source":"internal-api-guideline-v3","updated_at":"2026-08-10T00:00:00Z"} metadata=  KNOWLEDGE (kb-payment-retry): For POST /payments, every retryable request MUST send the same Idempotency-K`
 
 ### E09 - long_term
 
-`<USER_SUMMARY> user with the id of lan-lab17, name of Lan Tran and email . </USER_SUMMARY>`
+`SESSION NOTE (lan-s1): Toi la Lan. Du an cua toi la LOTUS-88. Toi uu tien Java va Spring Boot, va khong dung Python trong vi du backend.  <USER_SUMMARY> Lan's project is LOTUS-88. Lan prioritizes Java and Spring Boot and does not use Python for the backend.  Lan's project is LOTUS-88. Lan prioritizes Java and Spring Boot and does not use Python for the backend.  Lan prioritizes Java and Spring Boot. </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-01 11:00:20     Source: message     Content: Lab Assistant (assistant): Da hieu: LOTUS-88, Java + Spring Boot cho backend examples.   - Created At: 2026-08-01 11:00:00   `
 
 ### E10 - short_term
 
@@ -42,28 +42,28 @@
 
 ### E02 - long_term
 
-`<USER_SUMMARY> user with the id of minh-lab17, name of Minh Nguyen and email . </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-17 16:54:23     Source: message     Content: [user] {   "user_id": "minh-lab17",   "first_name": "Minh",   "last_name": "Nguyen",   "user_alias": "Evaluation User" }: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh. </EPISODES>`
+`SESSION NOTE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  SESSION NOTE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  SESSION NOTE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  SESSION NOTE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  SESSION NOTE (minh-s1): Toi dang hoc async/await va `
 
 ### E03 - long_term
 
-`<USER_SUMMARY> user with the id of minh-lab17, name of Minh Nguyen and email . </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-17 16:54:23     Source: message     Content: [user] {   "user_id": "minh-lab17",   "first_name": "Minh",   "last_name": "Nguyen",   "user_alias": "Evaluation User" }: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh. </EPISODES>`
+`SESSION NOTE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  SESSION NOTE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  SESSION NOTE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  SESSION NOTE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  SESSION NOTE (minh-s1): Toi dang hoc async/await va `
 
 ### E04 - episodic
 
-`EPISODE: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh.`
+`EPISODE: Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  EPISODE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  EPISODE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  EPISODE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  EPISODE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va kho`
 
 ### E05 - episodic
 
-`EPISODE: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh.`
+`EPISODE: Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  EPISODE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  EPISODE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  EPISODE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  EPISODE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va kho`
 
 ### E07 - mixed
 
-`<LONG_TERM> <USER_SUMMARY> user with the id of minh-lab17, name of Minh Nguyen and email . </USER_SUMMARY> </LONG_TERM>  <SEMANTIC> EPISODE: For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3. metadata= EPISODE: {"id":"kb-payment-retry","entity":"Payment API Retry Policy","summary":"For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3.","source":"internal-api-guideline-v3","updated_at":"2026-08-`
+`<LONG_TERM> SESSION NOTE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  SESSION NOTE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  SESSION NOTE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  SESSION NOTE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  SESSION NOTE (minh-s1): Toi dang hoc asy`
 
 ### E11 - semantic
 
-``
+`ENTITY: transient 5xx errors -  ENTITY: Payment API Retry Policy - For POST /payments, every retryable request must send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3. ENTITY: max-3-retries -  ENTITY: Idempotency-Key -  ENTITY: HTTP 429 -  ENTITY: PAYMENT-RULE-3 -   KNOWLEDGE (kb-payment-retry): For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3.  KNOWLEDGE (kb-async-http): When async HTTP calls time out, inspect connection pooling, downstre`
 
 ### E08 - long_term
 
-`<USER_SUMMARY> user with the id of minh-lab17, name of Minh Nguyen and email . </USER_SUMMARY>`
+`SESSION NOTE (minh-s3): Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27.  SESSION NOTE (minh-s2): Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail.  SESSION NOTE (minh-s2): Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20.  SESSION NOTE (minh-s1): Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan.  SESSION NOTE (minh-s1): Toi dang hoc async/await va `

@@ -4,8 +4,8 @@
 | --- | ---: | ---: | ---: |
 | Evidence hit rate | 100.0% | 18.2% | +81.8% |
 | Passed cases | 11/11 | 2/11 | +9 |
-| Avg retrieval latency (ms) | 1601.2 | 0.0 | +1601.2 |
-| Avg token reduction | 14.2% | 81.8% | -67.6% |
+| Avg retrieval latency (ms) | 1154.3 | 0.0 | +1154.3 |
+| Avg token reduction | 5.8% | 81.8% | -76.0% |
 
 ## Interpretation
 

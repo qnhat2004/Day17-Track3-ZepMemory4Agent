@@ -12,7 +12,9 @@ scikit-learn>=1.7,<2
 
 # Lab utilities
 python-dotenv>=1.0,<2
-pydantic>=2.10,<3
+# Keep a wheel-backed Pydantic release. The newest unbounded 2.x release can
+# resolve to a pydantic-core build unavailable in the lab's Python 3.12 image.
+pydantic>=2.10,<2.13
 rich>=13.9,<15
 typer>=0.15,<1
 pytest>=8.3,<9
